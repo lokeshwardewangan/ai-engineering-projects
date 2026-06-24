@@ -1,0 +1,21 @@
+{
+  "name": "agent-webpage-support",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@chroma-core/default-embed": "^0.1.9",
+    "axios": "^1.18.1",
+    "cheerio": "^1.2.0",
+    "chromadb": "^3.4.3",
+    "dotenv": "^17.4.2",
+    "openai": "^6.45.0",
+    "puppeteer": "^25.2.1"
+  }
+}
