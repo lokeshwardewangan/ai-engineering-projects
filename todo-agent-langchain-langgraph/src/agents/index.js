@@ -38,7 +38,7 @@ export async function questionAiAgnet(question) {
     }
 
     if (event.event === "on_tool_end") {
-      console.log(`🔌 [Tool Result Received]: `, event.data.output);
+      // console.log(`🔌 [Tool Result Received]: `, event.data.output);
     }
   }
 }

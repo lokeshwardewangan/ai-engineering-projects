@@ -1,10 +1,10 @@
-import { ilike } from "drizzle-orm";
-import {todosTable} from "../db/schema.js"
-import {db} from "../db/index.js";
+import { eq, ilike } from "drizzle-orm";
+import { todosTable } from "../db/schema.js";
+import { db } from "../db/index.js";
 
 export async function findAllTodos() {
   const todos = await db.select().from(todosTable);
-  if(todos.length === 0) return "Your todo task is empty."
+  if (todos.length === 0) return "Your todo task is empty.";
   return todos;
 }
 
@@ -17,7 +17,11 @@ export async function createTodo(todo) {
 }
 
 export async function findByIdAndDeleteTodo(id) {
-  await db.delete(todosTable).where(eq(todosTable.id, id));
+  const [deletedTodo] = await db
+    .delete(todosTable)
+    .where(eq(todosTable.id, id))
+    .returning();
+  return deletedTodo;
 }
 
 export async function findTodoBySearch(search) {
@@ -35,10 +39,8 @@ export async function findByIdAndUpdateTodo(id, newTodo) {
     .set({
       todo: newTodo,
     })
-    .where(eq(todosTable.id, id))
+    .where(eq(todosTable.id, id));
 
   return todos;
 }
 
-
-await findAllTodos();
